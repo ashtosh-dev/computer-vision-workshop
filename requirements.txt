@@ -1,0 +1,41 @@
+# # Core machine learning and computer vision
+# numpy>=1.26.4,<2.0
+# tensorflow==2.16.2
+# opencv-python==4.10.0.84
+# matplotlib==3.9.2
+# scikit-learn==1.5.2
+# Pillow==10.4.0
+
+# # Development and testing
+# pytest==8.3.3
+# ruff==0.7.1
+
+# # Interactive notebooks
+# jupyterlab==4.2.5
+# ipykernel==6.29.5
+
+
+
+# Core machine learning and computer vision
+numpy>=1.26.4,<2.0
+
+# TensorFlow installation
+# Standard TensorFlow (CPU; use this if you do not have a supported NVIDIA GPU)
+# tensorflow==2.16.2
+
+# TensorFlow with CUDA dependencies (Linux / WSL2 with a compatible NVIDIA GPU)
+# If you do not have a supported NVIDIA GPU, comment this line and uncomment the standard version above.
+tensorflow[and-cuda]==2.16.2
+
+opencv-python==4.10.0.84
+matplotlib==3.9.2
+scikit-learn==1.5.2
+Pillow==10.4.0
+
+# Development and testing
+pytest==8.3.3
+ruff==0.7.1
+
+# Interactive notebooks
+jupyterlab==4.2.5
+ipykernel==6.29.5
