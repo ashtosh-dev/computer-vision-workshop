@@ -32,34 +32,82 @@ ml-cv-workshop/
 └── pyproject.toml
 ```
 
-## 1. Laptop / WSL setup
+## 1. Laptop setup
 
-Python 3.10, 3.11 or 3.12 is supported. Python 3.11 is a good default for this workshop.
+Use **Python 3.12** for the workshop. Python 3.10 and 3.11 are also supported, but all participants should use the same version where possible to reduce dependency and compatibility issues.
+
+Create a virtual environment **with the selected Python version**. Activating a virtual environment does not change the Python version used to create it. Keep your system Python untouched; the workshop environment is isolated inside `.venv/`.
+
+### Linux / Ubuntu / WSL
+
+First, make sure Python 3.12 is installed. On Ubuntu or WSL:
 
 ```bash
-git clone <YOUR_REPOSITORY_URL>
-cd ml-cv-workshop
-
-python3.11 -m venv .venv
-source .venv/bin/activate
-
-python -m pip install --upgrade pip
-pip install -r requirements.txt
+sudo apt update
+sudo apt install -y python3.12 python3.12-venv
 ```
 
-If `python3.11` is not available, use another supported Python version.
+Then create and activate the environment from the repository root:
 
-For WSL, use a Linux filesystem path such as `~/projects/ml-cv-workshop` rather than `/mnt/c/...` for better file performance.
+```bash
+git clone https://github.com/ashtosh-dev/computer-vision-workshop.git
+cd computer-vision-workshop
+
+python3.12 -m venv .venv
+source .venv/bin/activate
+
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -r requirements.txt
+```
+
+On Fedora, install the matching Python 3.12 packages using DNF (package availability can depend on your Fedora release):
+
+```bash
+sudo dnf install python3.12 python3.12-devel
+```
+
+Then create the environment with `python3.12 -m venv .venv` and activate it with `source .venv/bin/activate`.
+
+### macOS
+
+After installing Python 3.12 (for example, with the Python installer or Homebrew):
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -r requirements.txt
+```
+
+### Windows (PowerShell)
+
+After installing Python 3.12:
+
+```powershell
+py -3.12 -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -r requirements.txt
+```
+
+If PowerShell blocks activation, see the [official Python documentation on virtual environments](https://docs.python.org/3/library/venv.html) for alternatives. Do not change or uninstall the system Python just to set up this project.
+
+For WSL, keep the repository in the Linux filesystem (for example, `~/projects/computer-vision-workshop`) rather than under `/mnt/c/` for better file performance.
 
 ### Verify the environment
 
+Run these commands after activation:
+
 ```bash
 python --version
+python -c "import sys; print(sys.executable)"
 python -c "import tensorflow as tf; print('TensorFlow:', tf.__version__)"
 python -c "import cv2; print('OpenCV:', cv2.__version__)"
 ```
 
-TensorFlow may run on CPU even if the laptop has an NVIDIA GPU. GPU acceleration depends on the installed TensorFlow build and compatible CUDA/cuDNN libraries. The workshop code does not require a GPU.
+Confirm that Python reports **3.12.x** and that the executable path points inside the repository's `.venv` directory. If it reports your system Python version, the environment may not be activated.
+
+To leave the environment later, run `deactivate`. To use it again, return to the repository and activate it with the command for your operating system.
 
 ## 2. Run the notebooks
 
